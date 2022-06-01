@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20211201085760" author="ibrahima.fall">
+
+        <addForeignKeyConstraint baseColumnNames="resource_id"
+                                 baseTableName="machine"
+                                 constraintName="fk_machine__resource_id"
+                                 referencedColumnNames="resource_id"
+                                 referencedTableName="resource"/>
+
+        <addForeignKeyConstraint baseColumnNames="unity_id"
+                                 baseTableName="office"
+                                 constraintName="fk_office__unity_id"
+                                 referencedColumnNames="unity_id"
+                                 referencedTableName="unity"/>
+
+        <addForeignKeyConstraint baseColumnNames="machine_bottleneck_id"
+                                 baseTableName="resource"
+                                 constraintName="fk_resource__machine_bottleneck_id"
+                                 referencedColumnNames="machine_id"
+                                 referencedTableName="machine"/>
+
+        <addForeignKeyConstraint baseColumnNames="standard_id"
+                                 baseTableName="resource"
+                                 constraintName="fk_resource__standard_id"
+                                 referencedColumnNames="standard_id"
+                                 referencedTableName="standard"/>
+
+        <addForeignKeyConstraint baseColumnNames="office_id"
+                                 baseTableName="resource"
+                                 constraintName="fk_resource__office_id"
+                                 referencedColumnNames="office_id"
+                                 referencedTableName="office"/>
+
+        <addForeignKeyConstraint baseColumnNames="stop_subcategory_id"
+                                 baseTableName="stop"
+                                 constraintName="fk_stop__stop_sub_category_id"
+                                 referencedColumnNames="stop_subcategory_id"
+                                 referencedTableName="stopsubcategory"/>
+
+        <addForeignKeyConstraint baseColumnNames="machine_id"
+                                 baseTableName="stop"
+                                 constraintName="fk_stop__machine_id"
+                                 referencedColumnNames="machine_id"
+                                 referencedTableName="machine"/>
+
+        <addForeignKeyConstraint baseColumnNames="stop_category_id"
+                                 baseTableName="stopsubcategory"
+                                 constraintName="fk_stopsubcategory__machine_id"
+                                 referencedColumnNames="stop_category_id"
+                                 referencedTableName="stopcategory"/>
+
+    </changeSet>
+</databaseChangeLog>

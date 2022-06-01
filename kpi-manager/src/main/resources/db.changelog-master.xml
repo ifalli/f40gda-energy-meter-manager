@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <include file="db/changelog/db.changelog-0.0.1.xml"/>
+    <include file="db/changelog/20211201085751_added_entity_machine.xml"/>
+    <include file="db/changelog/20211201085752_added_entity_office.xml"/>
+    <include file="db/changelog/20211201085753_added_entity_resource.xml"/>
+    <include file="db/changelog/20211201085754_added_entity_breakdown.xml"/>
+    <include file="db/changelog/20211201085754_added_entity_breakdown.xml"/>
+    <include file="db/changelog/20211201085755_added_entity_standard.xml"/>
+    <include file="db/changelog/20211201085756_added_entity_stopCategory.xml"/>
+    <include file="db/changelog/20211201085757_added_entity_stop.xml"/>
+    <include file="db/changelog/20211201085758_added_entity_stopSubCategory.xml"/>
+    <include file="db/changelog/20211201085759_added_entity_unity.xml"/>
+    <include file="db/changelog/20211201085760_added constraints.xml"/>
+
+</databaseChangeLog>

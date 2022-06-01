@@ -1,0 +1,75 @@
+spring:
+ cloud:
+  config:
+   enabled: false
+   discovery:
+    enabled: false
+ jpa:
+  database-platform: org.hibernate.dialect.H2Dialect
+  properties:
+   hibernate:
+    show_sql: false
+  hibernate:
+   ddl-auto: create
+   naming:
+    physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+ liquibase:
+  enabled: false
+ # Embedded ActiveMQ Configuration Example
+ activemq:
+  broker-url: vm://localhost
+  in-memory: true
+
+jdbc:
+ driverClassName: org.h2.Driver
+ url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+ user: test
+ pass: test
+
+project:
+ name: user-manager
+
+account:
+ creation:
+  sendemail: true
+  emailActionsList: "UPDATE_PASSWORD"
+
+keycloakadminclient:
+ server-url: http://localhost:8180/auth
+ master:
+  realm: master
+  clientId: admin-cli
+  user: admin
+  password: admin
+ admin:
+  realm: f40gdaAdmin
+  clientId: admin-cli
+  user: admin
+  password: admin
+
+management:
+  metrics:
+    export:
+      statsd:
+        enabled: false
+
+keycloak:
+ url: http://localhost:8180/auth
+ users:
+   active: true
+
+api:
+  keycloak:
+    base:
+      url: http://localhost:8180/
+
+swagger:
+  ui:
+    oauth:
+      clientId: swagger-ui
+      clientSecret: clientSecret
+      realms:
+        - name: Passenger
+          tokenUrl: https://keycloak/auth/realms/f40gdaPassenger/protocol/openid-connect/token
+        - name: Admin
+          tokenUrl: https://keycloak/auth/realms/f40gdaAdmin/protocol/openid-connect/token

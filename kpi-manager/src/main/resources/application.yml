@@ -1,0 +1,165 @@
+jdbc:
+  dbname: ${project-prefix}KPI_MANAGER
+  hostname: localhost
+  port: 5432
+module:
+  name: kpi-manager
+
+spring:
+  # Default configuration for QUARTZ
+  quartz:
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: fsam@senico.sn
+    password: bpojonfuvbjtsgve
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXX
+    sleuth:
+      messaging:
+        jms:
+          enabled: false
+
+      # configuration for ActiveMq
+      #activemq:
+      # broker-url: tcp://${activemq.hostname}:${activemq.port}
+      #jmx-broker-url: service:jmx:rmi:///jndi/rmi://${activemq.hostname}:${activemq.jmx-port}/jmxrmi
+    # configuration for Postgre database
+  datasource:
+    username: f40gda
+    password: f40gda
+    driver-class-name: org.postgresql.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    # configuration for Spring Boot 2 which use Hikari implementation
+    hikari:
+      maximumPoolSize: 3
+      connectionTimeout: 10000
+    # configuration for Spring Boot 1.5 for Dijon which use tomcat implementation
+    tomcat:
+      maxActive: 5
+      maxIdle: 10
+      minIdle: 2
+      initialSize: 2
+    url: jdbc:postgresql://${jdbc.hostname}:${jdbc.port}/${jdbc.dbname}
+  jpa:
+    show-sql: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  liquibase:
+    change-log: classpath:db.changelog-master.xml
+    enabled: true
+  jms:
+    cache:
+      enabled: true
+      consumers: true
+      producers: true
+      session-cache-size: 10
+    pub-sub-domain: false
+
+quartz:
+  schedulers:
+    anomaly:
+      active: true
+      batchSize: 100
+      cronExpression: "0 0 12 * * ?"
+
+priority:
+  A: P2D
+  B: P15D
+  C: P30D
+
+anomalyIssuedEmail:
+  emails: [saliou.diop@senico.sn,fall.ibrahima@senico.sn, mbaye.yade@senico.sn, khaoussou.bakhoum@senico.sn]
+  headers: [N°, Auteur, Date,Type, Description,Ligne, Machine, Equipement, priorite, categorie, statut]
+  template-loader-path: email-template.html
+
+project-prefix: F40GDA_
+
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+      pattern: "%h %l %u %t %r %s %b %D -- %{X-Trace-Id}o"
+      prefix: ${project.name}.access_log
+
+management:
+  metrics:
+    export:
+      statsd:
+        enabled: false
+        flavor: telegraf
+    tags:
+      pod: ${hostname}
+      service: ${spring.application.name}
+
+jms:
+  sendmessage:
+    topic:
+      enabled: true
+
+keycloak:
+  url: http://192.168.6.44:8080
+  ssl-required: external
+  public-client: true
+  realmPrefix: f40gda
+  clientIdSuffix: -portal
+  users:
+    active: true
+
+keycloakadminclient:
+  server-url: http://192.168.6.44:8080/auth
+  http:
+    poolsize: 5
+    sockettimeout: 5000
+    establishConnectionTimeout: 5000
+    connectionCheckoutTimeout: 5000
+    proxy:
+      enable: false
+      host: proxy
+      port: 3128
+  master:
+    realm: master
+    clientId: admin-cli
+    user: master
+    password: Ciao123!
+  admin:
+    realm: f40gdaAdmin
+    clientId: admin-cli
+    user: admin
+    password: qdmin
+
+swagger:
+  ui:
+    oauth:
+      clientId: swagger-ui
+      clientSecret: 17ae55e2-aa07-48a9-8914-c5ac5f816ccb
+      realms:
+        - name: Passenger
+          tokenUrl: ${keycloak.url}/auth/realms/f40gdaPassenger/protocol/openid-connect/token
+        - name: Admin
+          tokenUrl: ${keycloak.url}/auth/realms/f40gdaAdmin/protocol/openid-connect/token
+
+account:
+  creation:
+    sendemail: true
+    emailActionsList: "UPDATE_PASSWORD"

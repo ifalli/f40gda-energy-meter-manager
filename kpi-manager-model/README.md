@@ -1,0 +1,1 @@
+[Nexus Snapshot] (https://kazan.atosworldline.com/nexus/content/repositories/snapshots/com/worldline/tapandgo/stop-model) et [Nexus Release] (https://kazan.atosworldline.com/nexus/content/repositories/releases/com/worldline/tapandgo/stop-model)

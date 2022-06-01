@@ -1,0 +1,38 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+stop-manager/activemq-data/localhost/KahaDB/
+
+documentations/database_model\.mwb\.bak
+
+node_modules
+package-lock.json
+package.json
+
+# Maven settings for Nexus3
+settings.xml
+settings-security.xml
+
+maven.env

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: @project.name@
+      
+info:
+  description: @project.description@
+  version: @project.version@

@@ -1,0 +1,6 @@
+-- Deleting database data
+
+DROP TABLE IF EXISTS jpa_sequences CASCADE;
+DROP TABLE IF EXISTS UM_User CASCADE;
+DROP TABLE IF EXISTS UM_UserDetails CASCADE;
+DROP TABLE IF EXISTS UM_UserCredentials CASCADE;

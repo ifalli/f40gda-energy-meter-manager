@@ -1,0 +1,12 @@
+include:
+    - 'https://gitlab.kazan.myworldline.com/open-payment/f40gda-gitlab-ci/raw/develop/templates/.gitlab-ci-template-ng2.yml'
+
+variables:
+    docker_object_code: f40gda
+    docker_image_name: awl-f40gda-maas-usermanager
+
+# Disable properties gen for MaaS for now
+properties-documentation:
+  stage: doc-gen
+  script:
+    - echo "Not implemented for maas yet"
